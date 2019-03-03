@@ -115,11 +115,11 @@ public:
 		}
 	}
 
-	/* virtual */ ~ThreadObject_MorphOS()
+	~ThreadObject_MorphOS() override
 	{
 	}
 
-	/* virtual */ bool Exit()
+	bool Exit() override
 	{
 		struct OTTDThreadStartupMessage *msg;
 
@@ -136,7 +136,7 @@ public:
 		return true;
 	}
 
-	/* virtual */ void Join()
+	void Join() override
 	{
 		struct OTTDThreadStartupMessage *reply;
 
@@ -152,7 +152,7 @@ public:
 		m_thr = 0;
 	}
 
-	/* virtual */ bool IsCurrent()
+	bool IsCurrent() override
 	{
 		return FindTask(NULL) == m_thr;
 	}

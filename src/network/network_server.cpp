@@ -165,7 +165,7 @@ struct PacketWriter : SaveFilter {
 		this->current = NULL;
 	}
 
-	/* virtual */ void Write(byte *buf, size_t size)
+	void Write(byte *buf, size_t size) override
 	{
 		/* We want to abort the saving when the socket is closed. */
 		if (this->cs == NULL) SlError(STR_NETWORK_ERROR_LOSTCONNECTION);
@@ -192,7 +192,7 @@ struct PacketWriter : SaveFilter {
 		this->total_size += size;
 	}
 
-	/* virtual */ void Finish()
+	void Finish() override
 	{
 		/* We want to abort the saving when the socket is closed. */
 		if (this->cs == NULL) SlError(STR_NETWORK_ERROR_LOSTCONNECTION);
