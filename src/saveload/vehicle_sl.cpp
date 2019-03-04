@@ -521,7 +521,7 @@ void FixupTrainLengths()
 
 					/* Ignore any signals when backtracking. */
 					TrainForceProceeding old_tfp = u->force_proceed;
-					u->force_proceed = TFP_SIGNAL;
+					u->force_proceed = TrainForceProceeding::SIGNAL;
 
 					/* Swap start<>end, start+1<>end-1, ... */
 					int r = CountVehiclesInChain(u) - 1; // number of vehicles - 1

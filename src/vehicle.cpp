@@ -1453,7 +1453,7 @@ void VehicleEnterDepot(Vehicle *v)
 
 			UpdateSignalsOnSegment(t->tile, INVALID_DIAGDIR, t->owner);
 			t->wait_counter = 0;
-			t->force_proceed = TFP_NONE;
+			t->force_proceed = TrainForceProceeding::NONE;
 			ClrBit(t->flags, VRF_TOGGLE_REVERSE);
 			t->ConsistChanged(CCF_ARRANGE);
 			break;

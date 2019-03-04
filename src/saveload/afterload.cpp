@@ -2321,8 +2321,8 @@ bool AfterLoadGame()
 	if (IsSavegameVersionBefore(SLV_131)) {
 		Train *t;
 		FOR_ALL_TRAINS(t) {
-			if (t->force_proceed != TFP_NONE) {
-				t->force_proceed = TFP_STUCK;
+			if (t->force_proceed != TrainForceProceeding::NONE) {
+				t->force_proceed = TrainForceProceeding::STUCK;
 			}
 		}
 	}
