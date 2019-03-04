@@ -177,14 +177,14 @@ const Sprite *SpriteFontCache::GetGlyph(GlyphID key)
 {
 	SpriteID sprite = this->GetUnicodeGlyph(key);
 	if (sprite == 0) sprite = this->GetUnicodeGlyph('?');
-	return GetSprite(sprite, ST_FONT);
+	return GetSprite(sprite, SpriteType::FONT);
 }
 
 uint SpriteFontCache::GetGlyphWidth(GlyphID key)
 {
 	SpriteID sprite = this->GetUnicodeGlyph(key);
 	if (sprite == 0) sprite = this->GetUnicodeGlyph('?');
-	return SpriteExists(sprite) ? GetSprite(sprite, ST_FONT)->width + ScaleFontTrad(this->fs != FS_NORMAL ? 1 : 0) : 0;
+	return SpriteExists(sprite) ? GetSprite(sprite, SpriteType::FONT)->width + ScaleFontTrad(this->fs != FS_NORMAL ? 1 : 0) : 0;
 }
 
 int SpriteFontCache::GetHeight() const
@@ -530,7 +530,7 @@ const Sprite *FreeTypeFontCache::GetGlyph(GlyphID key)
 				8,  // width
 				0,  // x_offs
 				0,  // y_offs
-				ST_FONT,
+				SpriteType::FONT,
 				builtin_questionmark_data
 			};
 
@@ -564,7 +564,7 @@ const Sprite *FreeTypeFontCache::GetGlyph(GlyphID key)
 	/* FreeType has rendered the glyph, now we allocate a sprite and copy the image into it */
 	SpriteLoader::Sprite sprite;
 	sprite.AllocateData(ZOOM_LVL_NORMAL, width * height);
-	sprite.type = ST_FONT;
+	sprite.type = SpriteType::FONT;
 	sprite.width = width;
 	sprite.height = height;
 	sprite.x_offs = slot->bitmap_left;

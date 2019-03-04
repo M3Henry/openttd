@@ -18,7 +18,7 @@
 
 void Blitter_8bppBase::DrawColourMappingRect(void *dst, int width, int height, PaletteID pal)
 {
-	const uint8 *ctab = GetNonSprite(pal, ST_RECOLOUR) + 1;
+	const uint8 *ctab = GetNonSprite(pal, SpriteType::RECOLOUR) + 1;
 
 	do {
 		for (int i = 0; i != width; i++) *((uint8 *)dst + i) = ctab[((uint8 *)dst)[i]];

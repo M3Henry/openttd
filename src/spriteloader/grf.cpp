@@ -165,8 +165,8 @@ bool DecodeSingleSprite(SpriteLoader::Sprite *sprite, uint8 file_slot, size_t fi
 					data->a = (colour_fmt & SCC_ALPHA) ? *dest++ : 0xFF;
 					if (colour_fmt & SCC_PAL) {
 						switch (sprite_type) {
-							case ST_NORMAL: data->m = _palette_remap_grf[file_slot] ? _palmap_w2d[*dest] : *dest; break;
-							case ST_FONT:   data->m = min(*dest, 2u); break;
+							case SpriteType::NORMAL: data->m = _palette_remap_grf[file_slot] ? _palmap_w2d[*dest] : *dest; break;
+							case SpriteType::FONT:   data->m = min(*dest, 2u); break;
 							default:        data->m = *dest; break;
 						}
 						/* Magic blue. */
@@ -201,8 +201,8 @@ bool DecodeSingleSprite(SpriteLoader::Sprite *sprite, uint8 file_slot, size_t fi
 			sprite->data[i].a = (colour_fmt & SCC_ALPHA) ? *pixel++ : 0xFF;
 			if (colour_fmt & SCC_PAL) {
 				switch (sprite_type) {
-					case ST_NORMAL: sprite->data[i].m = _palette_remap_grf[file_slot] ? _palmap_w2d[*pixel] : *pixel; break;
-					case ST_FONT:   sprite->data[i].m = min(*pixel, 2u); break;
+					case SpriteType::NORMAL: sprite->data[i].m = _palette_remap_grf[file_slot] ? _palmap_w2d[*pixel] : *pixel; break;
+					case SpriteType::FONT:   sprite->data[i].m = min(*pixel, 2u); break;
 					default:        sprite->data[i].m = *pixel; break;
 				}
 				/* Magic blue. */
@@ -230,7 +230,7 @@ uint8 LoadSpriteV1(SpriteLoader::Sprite *sprite, uint8 file_slot, size_t file_po
 	/* Type 0xFF indicates either a colourmap or some other non-sprite info; we do not handle them here */
 	if (type == 0xFF) return 0;
 
-	ZoomLevel zoom_lvl = (sprite_type != ST_MAPGEN) ? ZOOM_LVL_OUT_4X : ZOOM_LVL_NORMAL;
+	ZoomLevel zoom_lvl = (sprite_type != SpriteType::MAPGEN) ? ZOOM_LVL_OUT_4X : ZOOM_LVL_NORMAL;
 
 	sprite[zoom_lvl].height = FioReadByte();
 	sprite[zoom_lvl].width  = FioReadWord();
@@ -275,8 +275,8 @@ uint8 LoadSpriteV2(SpriteLoader::Sprite *sprite, uint8 file_slot, size_t file_po
 		byte colour = type & SCC_MASK;
 		byte zoom = FioReadByte();
 
-		if (colour != 0 && (load_32bpp ? colour != SCC_PAL : colour == SCC_PAL) && (sprite_type != ST_MAPGEN ? zoom < lengthof(zoom_lvl_map) : zoom == 0)) {
-			ZoomLevel zoom_lvl = (sprite_type != ST_MAPGEN) ? zoom_lvl_map[zoom] : ZOOM_LVL_NORMAL;
+		if (colour != 0 && (load_32bpp ? colour != SCC_PAL : colour == SCC_PAL) && (sprite_type != SpriteType::MAPGEN ? zoom < lengthof(zoom_lvl_map) : zoom == 0)) {
+			ZoomLevel zoom_lvl = (sprite_type != SpriteType::MAPGEN) ? zoom_lvl_map[zoom] : ZOOM_LVL_NORMAL;
 
 			if (HasBit(loaded_sprites, zoom_lvl)) {
 				/* We already have this zoom level, skip sprite. */

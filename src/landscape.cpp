@@ -861,7 +861,7 @@ static void GenerateTerrain(int type, uint flag)
 {
 	uint32 r = Random();
 
-	const Sprite *templ = GetSprite((((r >> 24) * _genterrain_tbl_1[type]) >> 8) + _genterrain_tbl_2[type] + 4845, ST_MAPGEN);
+	const Sprite *templ = GetSprite((((r >> 24) * _genterrain_tbl_1[type]) >> 8) + _genterrain_tbl_2[type] + 4845, SpriteType::MAPGEN);
 	if (templ == nullptr) usererror("Map generator sprites could not be loaded");
 
 	uint x = r & MapMaxX();

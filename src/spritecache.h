@@ -38,13 +38,13 @@ uint GetMaxSpriteID();
 
 static inline const Sprite *GetSprite(SpriteID sprite, SpriteType type)
 {
-	assert(type != ST_RECOLOUR);
+	assert(type != SpriteType::RECOLOUR);
 	return (Sprite*)GetRawSprite(sprite, type);
 }
 
 static inline const byte *GetNonSprite(SpriteID sprite, SpriteType type)
 {
-	assert(type == ST_RECOLOUR);
+	assert(type == SpriteType::RECOLOUR);
 	return (byte*)GetRawSprite(sprite, type);
 }
 

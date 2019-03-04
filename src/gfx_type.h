@@ -294,12 +294,12 @@ enum PaletteType {
 };
 
 /** Types of sprites that might be loaded */
-enum SpriteType {
-	ST_NORMAL   = 0,      ///< The most basic (normal) sprite
-	ST_MAPGEN   = 1,      ///< Special sprite for the map generator
-	ST_FONT     = 2,      ///< A sprite used for fonts
-	ST_RECOLOUR = 3,      ///< Recolour sprite
-	ST_INVALID  = 4,      ///< Pseudosprite or other unusable sprite, used only internally
+enum struct SpriteType : byte {
+	NORMAL   = 0,      ///< The most basic (normal) sprite
+	MAPGEN   = 1,      ///< Special sprite for the map generator
+	FONT     = 2,      ///< A sprite used for fonts
+	RECOLOUR = 3,      ///< Recolour sprite
+	INVALID  = 4,      ///< Pseudosprite or other unusable sprite, used only internally
 };
 
 /** The number of milliseconds per game tick. */

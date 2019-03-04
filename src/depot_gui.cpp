@@ -666,7 +666,7 @@ struct DepotWindow : Window {
 
 				SetDParamMaxDigits(0, this->unitnumber_digits);
 				Dimension unumber = GetStringBoundingBox(STR_BLACK_COMMA);
-				const Sprite *spr = GetSprite(SPR_FLAG_VEH_STOPPED, ST_NORMAL);
+				const Sprite *spr = GetSprite(SPR_FLAG_VEH_STOPPED, SpriteType::NORMAL);
 				this->flag_width  = UnScaleGUI(spr->width) + WD_FRAMERECT_RIGHT;
 				this->flag_height = UnScaleGUI(spr->height);
 

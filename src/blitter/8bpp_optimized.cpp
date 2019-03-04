@@ -129,7 +129,7 @@ Sprite *Blitter_8bppOptimized::Encode(const SpriteLoader::Sprite *sprite, Alloca
 	ZoomLevel zoom_min;
 	ZoomLevel zoom_max;
 
-	if (sprite->type == ST_FONT) {
+	if (sprite->type == SpriteType::FONT) {
 		zoom_min = ZOOM_LVL_NORMAL;
 		zoom_max = ZOOM_LVL_NORMAL;
 	} else {
