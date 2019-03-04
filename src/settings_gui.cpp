@@ -339,7 +339,7 @@ struct GameOptionsWindow : Window {
 		return list;
 	}
 
-	virtual void SetStringParameters(int widget) const
+	void SetStringParameters(int widget) const override
 	{
 		switch (widget) {
 			case WID_GO_CURRENCY_DROPDOWN:   SetDParam(0, _currency_specs[this->opt->locale.currency].name); break;
@@ -358,7 +358,7 @@ struct GameOptionsWindow : Window {
 		}
 	}
 
-	virtual void DrawWidget(const Rect &r, int widget) const
+	void DrawWidget(const Rect &r, int widget) const override
 	{
 		switch (widget) {
 			case WID_GO_BASE_GRF_DESCRIPTION:
@@ -378,7 +378,7 @@ struct GameOptionsWindow : Window {
 		}
 	}
 
-	virtual void UpdateWidgetSize(int widget, Dimension *size, const Dimension &padding, Dimension *fill, Dimension *resize)
+	void UpdateWidgetSize(int widget, Dimension *size, const Dimension &padding, Dimension *fill, Dimension *resize) override
 	{
 		switch (widget) {
 			case WID_GO_BASE_GRF_DESCRIPTION:
@@ -445,7 +445,7 @@ struct GameOptionsWindow : Window {
 		}
 	}
 
-	virtual void OnClick(Point pt, int widget, int click_count)
+	void OnClick(Point pt, int widget, int click_count) override
 	{
 		if (widget >= WID_GO_BASE_GRF_TEXTFILE && widget < WID_GO_BASE_GRF_TEXTFILE + TFT_END) {
 			if (BaseGraphics::GetUsedSet() == NULL) return;
@@ -508,7 +508,7 @@ struct GameOptionsWindow : Window {
 		}
 	}
 
-	virtual void OnDropdownSelect(int widget, int index)
+	void OnDropdownSelect(int widget, int index) override
 	{
 		switch (widget) {
 			case WID_GO_CURRENCY_DROPDOWN: // Currency
@@ -587,7 +587,7 @@ struct GameOptionsWindow : Window {
 	 * @param data Information about the changed data. @see GameOptionsInvalidationData
 	 * @param gui_scope Whether the call is done from GUI scope. You may not do everything when not in GUI scope. See #InvalidateWindowData() for details.
 	 */
-	virtual void OnInvalidateData(int data = 0, bool gui_scope = true)
+	void OnInvalidateData(int data = 0, bool gui_scope = true) override
 	{
 		if (!gui_scope) return;
 		this->SetWidgetLoweredState(WID_GO_FULLSCREEN_BUTTON, _fullscreen);
@@ -1856,7 +1856,7 @@ struct GameSettingsWindow : Window {
 		this->InvalidateData();
 	}
 
-	virtual void UpdateWidgetSize(int widget, Dimension *size, const Dimension &padding, Dimension *fill, Dimension *resize)
+	void UpdateWidgetSize(int widget, Dimension *size, const Dimension &padding, Dimension *fill, Dimension *resize) override
 	{
 		switch (widget) {
 			case WID_GS_OPTIONSPANEL:
@@ -1891,7 +1891,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void OnPaint()
+	void OnPaint() override
 	{
 		if (this->closing_dropdown) {
 			this->closing_dropdown = false;
@@ -1932,7 +1932,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void SetStringParameters(int widget) const
+	void SetStringParameters(int widget) const override
 	{
 		switch (widget) {
 			case WID_GS_RESTRICT_DROPDOWN:
@@ -1977,7 +1977,7 @@ struct GameSettingsWindow : Window {
 		return list;
 	}
 
-	virtual void DrawWidget(const Rect &r, int widget) const
+	void DrawWidget(const Rect &r, int widget) const override
 	{
 		switch (widget) {
 			case WID_GS_OPTIONSPANEL: {
@@ -2027,7 +2027,7 @@ struct GameSettingsWindow : Window {
 		this->last_clicked = pe;
 	}
 
-	virtual void OnClick(Point pt, int widget, int click_count)
+	void OnClick(Point pt, int widget, int click_count) override
 	{
 		switch (widget) {
 			case WID_GS_EXPAND_ALL:
@@ -2210,7 +2210,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void OnTimeout()
+	void OnTimeout() override
 	{
 		if (this->clicked_entry != NULL) { // On timeout, release any depressed buttons
 			this->clicked_entry->SetButtons(0);
@@ -2219,7 +2219,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void OnQueryTextFinished(char *str)
+	void OnQueryTextFinished(char *str) override
 	{
 		/* The user pressed cancel */
 		if (str == NULL) return;
@@ -2245,7 +2245,7 @@ struct GameSettingsWindow : Window {
 		this->SetDirty();
 	}
 
-	virtual void OnDropdownSelect(int widget, int index)
+	void OnDropdownSelect(int widget, int index) override
 	{
 		switch (widget) {
 			case WID_GS_RESTRICT_DROPDOWN:
@@ -2289,7 +2289,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void OnDropdownClose(Point pt, int widget, int index, bool instant_close)
+	void OnDropdownClose(Point pt, int widget, int index, bool instant_close) override
 	{
 		if (widget >= 0) {
 			/* Normally the default implementation of OnDropdownClose() takes care of
@@ -2308,7 +2308,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void OnInvalidateData(int data = 0, bool gui_scope = true)
+	void OnInvalidateData(int data = 0, bool gui_scope = true) override
 	{
 		if (!gui_scope) return;
 
@@ -2338,7 +2338,7 @@ struct GameSettingsWindow : Window {
 		this->SetWidgetDisabledState(WID_GS_COLLAPSE_ALL, all_folded);
 	}
 
-	virtual void OnEditboxChanged(int wid)
+	void OnEditboxChanged(int wid) override
 	{
 		if (wid == WID_GS_FILTER) {
 			this->filter.string.SetFilterTerm(this->filter_editbox.text.buf);
@@ -2351,7 +2351,7 @@ struct GameSettingsWindow : Window {
 		}
 	}
 
-	virtual void OnResize()
+	void OnResize() override
 	{
 		this->vscroll->SetCapacityFromWidget(this, WID_GS_OPTIONSPANEL, SETTINGTREE_TOP_OFFSET + SETTINGTREE_BOTTOM_OFFSET);
 	}
@@ -2495,7 +2495,7 @@ struct CustomCurrencyWindow : Window {
 		this->SetWidgetDisabledState(WID_CC_YEAR_UP, _custom_currency.to_euro == MAX_YEAR);
 	}
 
-	virtual void SetStringParameters(int widget) const
+	void SetStringParameters(int widget) const override
 	{
 		switch (widget) {
 			case WID_CC_RATE:      SetDParam(0, 1); SetDParam(1, 1);            break;
@@ -2513,7 +2513,7 @@ struct CustomCurrencyWindow : Window {
 		}
 	}
 
-	virtual void UpdateWidgetSize(int widget, Dimension *size, const Dimension &padding, Dimension *fill, Dimension *resize)
+	void UpdateWidgetSize(int widget, Dimension *size, const Dimension &padding, Dimension *fill, Dimension *resize) override
 	{
 		switch (widget) {
 			/* Set the appropriate width for the edit 'buttons' */
@@ -2532,7 +2532,7 @@ struct CustomCurrencyWindow : Window {
 		}
 	}
 
-	virtual void OnClick(Point pt, int widget, int click_count)
+	void OnClick(Point pt, int widget, int click_count) override
 	{
 		int line = 0;
 		int len = 0;
@@ -2614,7 +2614,7 @@ struct CustomCurrencyWindow : Window {
 		this->SetDirty();
 	}
 
-	virtual void OnQueryTextFinished(char *str)
+	void OnQueryTextFinished(char *str) override
 	{
 		if (str == NULL) return;
 
@@ -2646,7 +2646,7 @@ struct CustomCurrencyWindow : Window {
 		SetButtonState();
 	}
 
-	virtual void OnTimeout()
+	void OnTimeout() override
 	{
 		this->SetDirty();
 	}
