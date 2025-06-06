@@ -5,8 +5,6 @@
 
 #include "linkgraphjob_base.h"
 
-typedef std::vector<Path *> PathVector;
-
 /**
  * Multi-commodity flow calculating base class.
  */

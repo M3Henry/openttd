@@ -232,7 +232,7 @@ uint Path::AddFlow(uint new_flow, LinkGraphJob &job, uint max_saturation)
 		}
 		new_flow = this->parent->AddFlow(new_flow, job, max_saturation);
 		if (this->flow == 0 && new_flow > 0) {
-			job[this->parent->node].paths.push_front(this);
+			job[this->parent->node].paths.push_back(this);
 		}
 		edge.AddFlow(new_flow);
 	}

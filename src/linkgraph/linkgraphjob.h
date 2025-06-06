@@ -16,7 +16,7 @@
 
 class LinkGraphJob;
 class Path;
-typedef std::list<Path *> PathList;
+typedef std::vector<Path *> PathVector;
 
 /** Type of the pool for link graph jobs. */
 using LinkGraphJobPool = Pool<LinkGraphJob, LinkGraphJobID, 32>;
@@ -80,7 +80,7 @@ public:
 		const LinkGraph::BaseNode &base; ///< Reference to the node that is annotated.
 
 		uint undelivered_supply = 0; ///< Amount of supply that hasn't been distributed yet.
-		PathList paths{}; ///< Paths through this node, sorted so that those with flow == 0 are in the back.
+		PathVector paths{}; ///< Paths through this node, sorted so that those with flow == 0 are in the back.
 		FlowStatMap flows{}; ///< Planned flows to other nodes.
 
 		std::vector<EdgeAnnotation> edges{}; ///< Annotations for all edges originating at this node.
